@@ -223,7 +223,17 @@
 .signup_btn:hover {
     background-color: #1d1d1d;
 }
-
+.logo{
+    
+    display: flex;
+    padding: 10px;
+    align-items: center;
+margin-left: 2rem;
+}
+.head-name{
+    margin-left: 5px;
+    font-size: 30px;
+}
 /* input {
     padding: 10px;
     border: 1px solid #ccc;
