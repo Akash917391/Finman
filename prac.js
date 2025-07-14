@@ -1,0 +1,129 @@
+
+window.onload = function () {
+    const incomeBtn = document.querySelector('.income-btn');
+    const expenseBtn = document.querySelector('.expense-btn');
+
+    const incomeDisplay = document.querySelector('.amt-inc')
+    const expenseDisplay = document.querySelector('.amt-exp')
+    const balanceDisplay = document.querySelector('.amt-bal')
+
+    const incomeCategoryBox = document.querySelector('.income-detail');
+    const expenseCategoryBox = document.querySelector('.expense-detail');
+
+    const modal = document.getElementById('incomeModal');
+    const expenseModal = document.getElementById('expenseModal');
+
+    const addIncomeBtn = document.getElementById('addIncomeBtn');
+    const addExpenseBtn = document.getElementById('addExpenseBtn');
+
+    const incomeClose = document.getElementById('incomeClose');
+    const expenseClose = document.getElementById('expenseClose');
+
+    let totalIncome = 0;
+    let totalExpense = 0;
+
+    incomeDisplay.textContent = formatRupees(0);
+    expenseDisplay.textContent = formatRupees(0);
+    balanceDisplay.textContent = formatRupees(0);
+
+    function formatRupees(value) {
+        let formatter = new Intl.NumberFormat('en-IN',
+            {
+                style: 'currency',
+                currency: 'INR'
+            }
+        )
+        let formattedvalue = formatter.format(value);
+        return formattedvalue;
+    };
+
+    incomeBtn.onclick = () => {
+        modal.style.display = "block";
+    }
+    expenseBtn.onclick = () => {
+        expenseModal.style.display = "block";
+    }
+
+    incomeClose.onclick = () => {
+        modal.style.display = "none"
+    }
+
+    expenseClose.onclick = () => {
+        expenseModal.style.display = "none"
+    }
+
+    // -------------Income-box-------------
+    addIncomeBtn.onclick = () => {
+        const category = document.getElementById('incomeCategory').value
+        const amount = parseFloat(document.getElementById('incomeAmount').value)
+
+        if (category && !isNaN(amount)) {
+            totalIncome = totalIncome + amount;
+            incomeDisplay.textContent = formatRupees(totalIncome);
+            updateBalance();
+
+            if(incomeCategoryBox.innerText.trim() === 'No Data'){
+                incomeCategoryBox.innerHTML= '';
+            }
+
+            const newEntry= document.createElement('div');
+            newEntry.className='entry-box income-data';
+
+            newEntry.innerHTML = `
+             <div class="entry-header">
+            <span class="entry-text">${category}</span>
+            <span class="entry-amount">+${formatRupees(amount)}</span>
+            </div>
+            <div class="progress-bar">
+            <div class="progress"></div>
+            </div>`;
+             incomeCategoryBox.appendChild(newEntry);
+
+            document.getElementById('incomeCategory').value = '';
+            document.getElementById('incomeAmount').value = '';
+            modal.style.display = "none";
+        }
+    }
+    // -------------Expense-box-------------
+    addExpenseBtn.onclick = () => {
+        const category = document.getElementById('expenseCategory').value
+        const amount = parseFloat(document.getElementById('expenseAmount').value)
+
+        if (category && !isNaN(amount)) {
+            totalExpense = totalExpense + amount;
+            expenseDisplay.textContent = formatRupees(totalExpense);
+            updateBalance();
+
+            if(expenseCategoryBox.innerText.trim() === 'No Data'){
+                expenseCategoryBox.innerHTML= '';
+            }
+
+              if(expenseCategoryBox.innerText.trim() === 'No Data'){
+                expenseCategoryBox.innerHTML= '';
+            }
+
+            const newEntry= document.createElement('div');
+            newEntry.className='entry-box expense-data';
+
+            newEntry.innerHTML = `
+             <div class="entry-header">
+            <span class="entry-text">${category}</span>
+            <span class="entry-amount">+${formatRupees(amount)}</span>
+            </div>
+            <div class="progress-bar">
+            <div class="progress"></div>
+            </div>`;
+             expenseCategoryBox.appendChild(newEntry);
+
+            document.getElementById('expenseCategory').value = '';
+            document.getElementById('expenseAmount').value = '';
+            expenseModal.style.display = "none";
+        }
+    }
+
+    // ----------balance-----------
+    function updateBalance() {
+        const balance = totalIncome - totalExpense;
+        balanceDisplay.textContent = formatRupees(balance);
+    }
+}
