@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="login.css">
 </head>
 
-<body>
+<body class="login1">
     
     <div class="logo">
     <img src="./img/logo.png" alt="logo" width="30px" height="30px">

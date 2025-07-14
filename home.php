@@ -20,9 +20,9 @@
             <div class="navigate">
                 <nav>
                     <ul>
-                        <li><a href="home.html">Dashboard</a></li>
-                        <li><a href="transaction.html">Transaction</a></li>
-                        <Li><a href="manage.html">Manage</a></Li>
+                        <li><a href="home.php">Dashboard</a></li>
+                        <li><a href="transaction.php">Transaction</a></li>
+                        <Li><a href="manage.php">Manage</a></Li>
                     </ul>
                 </nav>
             </div>
