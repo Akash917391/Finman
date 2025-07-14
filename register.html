@@ -9,8 +9,9 @@
 </head>
 
 <body>
+  
    <div class="logo">
-    <img src="drawable/logo.png" alt="logo" width="30px" height="30px">
+    <img src="./img/logo.png" alt="logo" width="30px" height="30px">
     <h2 class="head-name">FINMAN</h2>
   </div>
   <div class="signup-container">
@@ -22,11 +23,11 @@
 
       <div class="register-detail">
 
-        <form method="post" class="reg-form">
+        <form action="register.php" method="POST" class="reg-form">
 
           <div class="s_name">
             <label for="name" class="txt">Name :</label>
-            <input type="text" id="name" name="name" placeholder="Enter Your Name">
+            <input type="text" id="name" name="username" placeholder="Enter Your Name" required>
           </div>
 
           <div class="s_login-email">
@@ -42,7 +43,7 @@
 
           <div class="s_cnfrm-pswrd">
             <label for="cnfrm-password" class="txt">Confirm Password :</label>
-            <input type="password" id="cnfrm-password" name="cnfrm-pswrd" placeholder="Enter Password Again" required
+            <input type="password" id="cnfrm-password" name="cpassword" placeholder="Enter Password Again" required
               required minlength="6" />
           </div>
 
